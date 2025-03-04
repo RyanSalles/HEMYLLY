@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Meu Amor</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 2s ease-in-out;
+            position: relative;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        button {
+            background: #ff6b81;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        button:hover {
+            background: #ff4757;
+            transform: scale(1.1);
+        }
+        .hidden {
+            display: none;
+        }
+        .heart {
+            width: 100px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        .heart-icon {
+            position: absolute;
+            bottom: 0;
+            width: 30px;
+            height: 30px;
+            animation: floatUp 5s linear infinite;
+        }
+        @keyframes floatUp {
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(-100vh); opacity: 0; }
+        }
+        audio {
+            display: none;
+        }
+        .glow {
+            animation: glowEffect 1.5s infinite alternate;
+        }
+        @keyframes glowEffect {
+            from { text-shadow: 0 0 10px pink, 0 0 20px red; }
+            to { text-shadow: 0 0 20px pink, 0 0 30px red; }
+        }
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <href="segundaPagina.html" target="_blank"></a>
+    <div class="floating-hearts"></div>
+    <div class="container">
+        <h1 class="glow">Para Minha Princesa ❤️</h1>
+        <p class="bounce">Você é a melhor coisa que já aconteceu na minha vida!</p>
+        <button id="surpriseButton">Clique para uma surpresa!</button>
+        <div id="surprise" class="hidden">
+            <img src="foto.jpg" alt="Foto" class="jpg" style="height: 300px;">
+            <p>Te amo mais do que palavras podem expressar! 💖</p>
+        </div>
+        <audio id="loveSong" src="love_song.mp3" loop></audio>
+    </div>
+    <script>
+        document.getElementById("surpriseButton").addEventListener("click", function() {
+            const surprise = document.getElementById("surprise");
+            surprise.classList.toggle("hidden");
+            const audio = document.getElementById("loveSong");
+            if (surprise.classList.contains("hidden")) {
+                audio.pause();
+            } else {
+                audio.play();
+            }
+        });
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart-icon");
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+            document.querySelector(".floating-hearts").appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 500);
+    </script>
+</body>
+</html>
